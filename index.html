@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Community Rules — 30 Rules for a Safe, Honest Community</title>
+<meta name="description" content="The community rules: responsibility, education-only content, prohibited conduct, privacy, and how the community runs.">
+<style>
+:root{
+  --bg:#0a0f1a; --bg2:#0d1424; --panel:#101a2e; --panel2:#14203a;
+  --line:rgba(148,178,220,.14); --line2:rgba(148,178,220,.22);
+  --ink:#e8eff9; --muted:#93a1bd; --faint:#67748f;
+  --acc:#8B5CF6; --acc-lt:#C4B5FD; --acc2:#22D3EE; --acc2-lt:#A5F3FC;
+  --acc-dim:rgba(139,92,246,.12); --warn:#F59E0B;
+  --r:16px; --font:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+[data-theme="light"]{
+  --bg:#eef1f6; --bg2:#e7ebf2; --panel:#f7f9fc; --panel2:#ffffff;
+  --line:rgba(30,50,90,.12); --line2:rgba(30,50,90,.2);
+  --ink:#16233a; --muted:#4c5d78; --faint:#7c8aa3;
+  --acc:#7C3AED; --acc-lt:#8B5CF6; --acc2:#0E7490; --acc2-lt:#0891B2;
+  --acc-dim:rgba(124,58,237,.08); --warn:#B45309;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:130%}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);line-height:1.6;
+  -webkit-font-smoothing:antialiased;min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+   radial-gradient(900px 500px at 12% -5%, rgba(139,92,246,.12), transparent 60%),
+   radial-gradient(800px 500px at 88% 12%, rgba(34,211,238,.08), transparent 60%),
+   radial-gradient(1000px 700px at 50% 115%, rgba(139,92,246,.06), transparent 60%)}
+#ambient{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+[data-theme="light"] #ambient{opacity:.55}
+.wrap{max-width:960px;margin:0 auto;padding:0 22px;position:relative;z-index:1}
+#themeToggle{position:fixed;top:16px;right:16px;z-index:70;display:flex;background:var(--panel);
+  border:1px solid var(--line2);border-radius:999px;padding:3px;gap:2px}
+#themeToggle button{border:0;background:transparent;color:var(--muted);font-family:var(--font);
+  font-size:.78rem;font-weight:700;padding:6px 12px;border-radius:999px;cursor:pointer}
+#themeToggle button[aria-pressed="true"]{background:var(--acc-dim);color:var(--acc-lt)}
+/* hero */
+.hero{padding:70px 0 8px;text-align:center}
+.hero .kicker{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;
+  color:var(--acc-lt);border:1px solid var(--line2);border-radius:999px;padding:6px 16px;margin-bottom:18px;background:var(--acc-dim)}
+.hero h1{font-size:clamp(2.2rem,6vw,3.6rem);font-weight:900;letter-spacing:-.02em;line-height:1.05;margin-bottom:10px}
+.hero h1 .grad{background:linear-gradient(100deg,var(--acc-lt),var(--acc2-lt));
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+.hero .sub{color:var(--muted);font-size:1rem;max-width:620px;margin:0 auto}
+/* short version */
+.short{margin:26px 0 8px;background:linear-gradient(135deg,var(--acc-dim),rgba(34,211,238,.07));
+  border:1px solid var(--line2);border-radius:var(--r);padding:22px}
+.short h2{font-size:.8rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--acc-lt);margin-bottom:12px}
+.short ul{list-style:none;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:8px}
+.short li{font-size:.87rem;color:var(--muted);padding-left:24px;position:relative}
+.short li::before{content:"✓";position:absolute;left:2px;font-weight:800;color:var(--acc2-lt)}
+.short li strong{color:var(--ink)}
+/* filter bar */
+.filterbar{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);
+  backdrop-filter:blur(10px);padding:14px 0;margin:18px 0 6px;border-bottom:1px solid var(--line)}
+.filterbar .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+#search{flex:1 1 200px;background:var(--panel);border:1px solid var(--line2);color:var(--ink);
+  border-radius:12px;padding:10px 14px;font-family:var(--font);font-size:.9rem;min-width:0}
+#search::placeholder{color:var(--faint)}
+#search:focus{outline:none;border-color:var(--acc)}
+.pills{display:flex;gap:8px;flex-wrap:wrap}
+.pill{border:1px solid var(--line2);background:var(--panel);color:var(--muted);font-family:var(--font);
+  font-size:.78rem;font-weight:700;border-radius:999px;padding:8px 14px;cursor:pointer;transition:all .15s}
+.pill:hover{border-color:var(--acc);color:var(--acc-lt)}
+.pill[aria-pressed="true"]{background:var(--acc-dim);border-color:var(--acc);color:var(--acc-lt)}
+#count{font-size:.78rem;color:var(--faint);margin-left:auto;white-space:nowrap}
+/* categories + cards */
+.cat{margin:30px 0}
+.cat-head{display:flex;align-items:center;gap:12px;margin-bottom:4px}
+.cat-head .ic{font-size:1.4rem}
+.cat-head h2{font-size:1.3rem;font-weight:800;letter-spacing:-.01em}
+.cat-head .cnt{font-size:.75rem;font-weight:800;color:var(--faint);background:var(--panel);
+  border:1px solid var(--line);border-radius:999px;padding:3px 12px;margin-left:auto}
+.cat-sub{font-size:.85rem;color:var(--faint);margin-bottom:14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.rule{border:1.5px solid transparent;border-radius:14px;background:linear-gradient(var(--panel),var(--panel)) padding-box,linear-gradient(135deg,var(--cc1),var(--cc2)) border-box;padding:18px;
+  display:flex;gap:14px;transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease,opacity .3s ease}
+.rule:hover{transform:translateY(-3px);box-shadow:0 12px 28px -12px var(--cc1),0 0 0 1px var(--cc2)}
+.cat-head .cnt{border-color:var(--cc1);color:var(--cc1)}
+.rule.hide{display:none}
+.rule .emo{font-size:1.5rem;flex:0 0 auto;line-height:1.2}
+.rule .body{min-width:0}
+.rule .rn{font-size:.7rem;font-weight:800;letter-spacing:1.6px;color:var(--faint);text-transform:uppercase}
+.rule h3{font-size:.98rem;font-weight:800;margin:2px 0 6px}
+.rule p{font-size:.85rem;color:var(--muted)}
+.cat.hide{display:none}
+.empty{display:none;text-align:center;color:var(--faint);padding:40px 0;font-size:.95rem}
+.empty.show{display:block}
+/* agreement footer */
+footer{margin:44px 0 60px}
+.agree{background:linear-gradient(135deg,var(--acc-dim),rgba(34,211,238,.07));
+  border:1px solid var(--line2);border-radius:var(--r);padding:28px;text-align:center}
+.agree .big{font-size:2rem;margin-bottom:10px}
+.agree h2{font-size:1.25rem;font-weight:900;margin-bottom:8px}
+.agree p{color:var(--muted);font-size:.92rem;max-width:600px;margin:0 auto 6px}
+.agree p strong{color:var(--ink)}
+.agree .fine{font-size:.78rem;color:var(--faint);margin-top:12px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<svg id="ambient" aria-hidden="true" focusable="false"></svg>
+<div id="themeToggle" role="group" aria-label="Theme">
+  <button type="button" data-t="dark" aria-pressed="true">Dark</button>
+  <button type="button" data-t="light" aria-pressed="false">Light</button>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <span class="kicker">Please read before participating</span>
+    <h1>Community <span class="grad">Rules</span></h1>
+    <p class="sub">Thirty rules that keep this community safe, honest, and useful. They boil down to one idea: <strong style="color:var(--ink)">you're responsible for your own decisions</strong> — and everyone here deserves respect.</p>
+  </header>
+
+  <div class="short">
+    <h2>The short version</h2>
+    <ul>
+      <li><strong>You own your decisions</strong> — purchases, health choices, legal compliance.</li>
+      <li><strong>Education only</strong> — nothing here is professional advice.</li>
+      <li><strong>No medical instructions</strong> — discussions are informational, not prescriptions.</li>
+      <li><strong>Evidence over hype</strong> — sources and testing beat rumors.</li>
+      <li><strong>Respect people &amp; privacy</strong> — no harassment, no doxxing, no scams.</li>
+    </ul>
+  </div>
+
+  <div class="filterbar">
+    <div class="row">
+      <label class="sr" for="search">Search rules</label>
+      <input id="search" type="search" placeholder="Search rules… (try &quot;vendor&quot;, &quot;medical&quot;, &quot;refund&quot;)" autocomplete="off">
+      <span id="count" aria-live="polite"></span>
+    </div>
+    <div class="row" style="margin-top:10px">
+      <div class="pills" id="pills" role="group" aria-label="Filter by category"></div>
+    </div>
+  </div>
+
+  <main id="rules"></main>
+  <p class="empty" id="empty">No rules match — try a different search or category.</p>
+
+  <footer>
+    <div class="agree">
+      <div class="big">✅</div>
+      <h2>By being here, you agree</h2>
+      <p>Joining or remaining in the community means you've <strong>read these rules and accept responsibility</strong> for your own decisions, actions, and use of community information.</p>
+      <p class="fine">Rules may be updated as the community develops — members are responsible for reviewing the current version.</p>
+    </div>
+  </footer>
+</div>
+
+<script>
+const $ = s => document.querySelector(s);
+const CATS = [
+  { id: "responsibility", c1: "#B08A3E", c2: "#D4AF5F", icon: "⚠️", name: "Your Responsibility", sub: "What you owe yourself and the community." },
+  { id: "advice", c1: "#8E7CC3", c2: "#B9AEE0", icon: "🎓", name: "Educational Only", sub: "What this community is — and isn't." },
+  { id: "vendors", c1: "#5F9E95", c2: "#93C4BC", icon: "🏪", name: "Vendors & Testing", sub: "Third parties, products, and lab reports." },
+  { id: "conduct", c1: "#B26E6E", c2: "#D29C9C", icon: "🚫", name: "Prohibited Conduct", sub: "Zero-tolerance behaviors." },
+  { id: "privacy", c1: "#6E8FB8", c2: "#9DB4D6", icon: "🔐", name: "Privacy & Respect", sub: "People, information, and ownership." },
+  { id: "running", c1: "#7FA05C", c2: "#ABC48D", icon: "🛡️", name: "How the Community Runs", sub: "Moderation, membership, and participation." }
+];
+const RULES = [
+  { n: 1, e: "⚠️", t: "Personal Responsibility", x: "Members are solely responsible for their own decisions, purchases, actions, health decisions, legal compliance, and use of information found within the community.", c: "responsibility" },
+  { n: 2, e: "🎓", t: "Educational Purposes Only", x: "All content is provided for general educational and informational purposes only. Nothing in the community constitutes medical, legal, financial, pharmaceutical, or other professional advice.", c: "advice" },
+  { n: 3, e: "💊", t: "No Medical or Treatment Instructions", x: "Discussions involving compounds, medications, protocols, dosages, administration methods, or personal experiences are informational only and should not be interpreted as individualized medical advice, prescriptions, or instructions for use.", c: "advice" },
+  { n: 4, e: "🏪", t: "Third-Party Vendors & Products", x: "Any vendor, laboratory, website, product, or service discussed is an independent third party. The community does not automatically endorse, verify, certify, guarantee, or warrant them.", c: "vendors" },
+  { n: 5, e: "🧪", t: "Testing Limitations", x: "Laboratory reports and testing results only describe the specific sample tested at the specific time it was tested. Testing does not guarantee future batches, safety, authenticity, potency, consistency, storage conditions, legality, or vendor reliability.", c: "vendors" },
+  { n: 6, e: "⚖️", t: "Legal Compliance", x: "Members are responsible for understanding and complying with all laws and regulations applicable to them, including laws concerning products, purchases, imports, possession, and use.", c: "responsibility" },
+  { n: 7, e: "💳", t: "Third-Party Transactions", x: "The community is not responsible for transactions between members and third parties, including purchases, payments, refunds, chargebacks, shipping, customs, lost packages, disputes, or vendor communications.", c: "vendors" },
+  { n: 8, e: "🚫", t: "No Fraud or Deception", x: "No scams, fabricated COAs or testing reports, fake reviews, impersonation, fraudulent claims, misleading information, or intentionally deceptive conduct.", c: "conduct" },
+  { n: 9, e: "🚫", t: "No Selling or Unauthorized Promotion", x: "No selling, brokering, advertising, affiliate links, referral links, discount-code spam, unsolicited promotions, or hidden commercial pitches unless explicitly authorized.", c: "conduct" },
+  { n: 10, e: "📩", t: "No Unsolicited Recruiting", x: "Do not use the community or private messages to recruit members into outside groups, private chats, businesses, services, or other communities without permission.", c: "conduct" },
+  { n: 11, e: "🔐", t: "Protect Personal Information", x: "Do not post or distribute private information, addresses, payment details, private conversations, identifying information, or confidential documents belonging to yourself or others without appropriate permission.", c: "privacy" },
+  { n: 12, e: "🛡️", t: "Administrator & Moderator Discretion", x: "Administrators and moderators may remove content, restrict discussions, suspend accounts, or remove members when reasonably necessary to protect the community or enforce its rules.", c: "running" },
+  { n: 13, e: "🚪", t: "Membership Is Not Guaranteed", x: "Membership and access may be revoked for rule violations, abusive behavior, fraudulent activity, or conduct that threatens the community or its members.", c: "running" },
+  { n: 14, e: "🗣️", t: "User-Generated Content", x: "Members are responsible for the accuracy, legality, and consequences of the information they post. Member posts do not necessarily represent the views of the administrators or community.", c: "responsibility" },
+  { n: 15, e: "🔬", t: "Verify Important Information", x: "Information posted by members may be inaccurate, incomplete, outdated, or based solely on personal experience. Independently verify important information before relying on it.", c: "responsibility" },
+  { n: 16, e: "📊", t: "Evidence Over Hype", x: "Prioritize credible sources, documented evidence, laboratory testing, and transparent information over rumors, speculation, marketing claims, or unsupported statements.", c: "running" },
+  { n: 17, e: "🔎", t: "Search Before Posting", x: "Use the community search function and existing resources before asking questions that may already have been answered.", c: "running" },
+  { n: 18, e: "🧠", t: "Ask Thoughtful Questions", x: "Provide relevant context, explain what you are trying to understand, and ask a clear question so other members can provide useful information.", c: "running" },
+  { n: 19, e: "🤝", t: "Respect Other Members", x: "No harassment, threats, bullying, doxxing, targeted personal attacks, or intentionally disruptive behavior.", c: "privacy" },
+  { n: 20, e: "🚫", t: "No Impersonation", x: "Do not impersonate another member, administrator, professional, company, laboratory, vendor, or organization.", c: "conduct" },
+  { n: 21, e: "🔒", t: "Respect Community Confidentiality", x: "Do not copy, redistribute, resell, publish, or commercially exploit private community discussions, educational materials, resources, or other members' content without permission.", c: "privacy" },
+  { n: 22, e: "©️", t: "Respect Intellectual Property", x: "Do not upload, reproduce, distribute, or commercially exploit copyrighted or proprietary material without appropriate authorization.", c: "privacy" },
+  { n: 23, e: "🚫", t: "No Circumvention", x: "Do not attempt to bypass moderation, membership restrictions, payment requirements, content protections, or other community safeguards.", c: "conduct" },
+  { n: 24, e: "📩", t: "No Professional Relationship", x: "Participation in the community does not create a doctor-patient, pharmacist-patient, attorney-client, financial-advisor, or other professional relationship.", c: "advice" },
+  { n: 25, e: "🧹", t: "Content Moderation", x: "Content may be removed when it violates these rules, creates unnecessary risk, contains misleading information, or is otherwise considered inappropriate for the community.", c: "running" },
+  { n: 26, e: "🔄", t: "Rules May Change", x: "These rules may be updated, expanded, or modified as the community develops. Members are responsible for reviewing the current version.", c: "running" },
+  { n: 27, e: "⚠️", t: "No Guaranteed Outcomes", x: "No information provided within the community guarantees a particular health, financial, purchasing, or other outcome.", c: "advice" },
+  { n: 28, e: "🛑", t: "No Obligation to Provide Individualized Support", x: "Administrators are not obligated to provide individualized medical, legal, financial, purchasing, or technical advice through posts or private messages.", c: "advice" },
+  { n: 29, e: "👤", t: "No Reliance on Member Opinions", x: "Personal experiences and opinions shared by members are not professional recommendations and should not be treated as verified facts.", c: "advice" },
+  { n: 30, e: "✅", t: "Member Agreement", x: "By joining or remaining in the community, members acknowledge that they have read and agreed to these rules and accept responsibility for their own decisions, actions, and use of community information.", c: "responsibility" }
+];
+let activeCat = "all", query = "";
+function esc(s){ return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function renderPills(){
+  $("#pills").innerHTML = [{id:"all",name:"All 30"}].concat(CATS).map(c =>
+    '<button type="button" class="pill" data-cat="' + c.id + '" aria-pressed="' + (activeCat === c.id) + '">' + esc(c.name) + "</button>"
+  ).join("");
+  document.querySelectorAll(".pill").forEach(b => b.addEventListener("click", () => {
+    activeCat = b.dataset.cat;
+    document.querySelectorAll(".pill").forEach(x => x.setAttribute("aria-pressed", x === b));
+    applyFilter();
+  }));
+}
+function renderRules(){
+  $("#rules").innerHTML = CATS.map(c => {
+    const rs = RULES.filter(r => r.c === c.id);
+    return '<section class="cat" data-cat="' + c.id + '"><div class="cat-head"><span class="ic">' + c.icon + "</span><h2>" + esc(c.name) + '</h2><span class="cnt">' + rs.length + ' rules</span></div>' +
+      '<p class="cat-sub">' + esc(c.sub) + '</p><div class="grid">' +
+      rs.map(r => '<article class="rule" data-n="' + r.n + '"><span class="emo" aria-hidden="true">' + r.e + '</span><div class="body">' +
+        '<span class="rn">Rule ' + r.n + '</span><h3>' + esc(r.t) + "</h3><p>" + esc(r.x) + "</p></div></article>").join("") +
+      "</div></section>";
+  }).join("");
+  document.querySelectorAll("#rules .cat").forEach(sec => {
+    const cc = CATS.find(x => x.id === sec.dataset.cat);
+    if (cc){ sec.style.setProperty("--cc1", cc.c1); sec.style.setProperty("--cc2", cc.c2); }
+  });
+}
+function applyFilter(){
+  const q = query.trim().toLowerCase();
+  let shown = 0;
+  document.querySelectorAll(".cat").forEach(sec => {
+    let catShown = 0;
+    sec.querySelectorAll(".rule").forEach(card => {
+      const r = RULES.find(x => x.n === +card.dataset.n);
+      const okCat = activeCat === "all" || r.c === activeCat;
+      const okQ = !q || (r.t + " " + r.x).toLowerCase().includes(q);
+      const show = okCat && okQ;
+      card.classList.toggle("hide", !show);
+      if (show){ shown++; catShown++; }
+    });
+    sec.classList.toggle("hide", catShown === 0);
+  });
+  $("#empty").classList.toggle("show", shown === 0);
+  $("#count").textContent = shown === RULES.length ? "30 rules" : shown + " of 30 shown";
+}
+/* ambient dots */
+const D_DARK = ["#8B5CF6","#C4B5FD","#22D3EE","#A5F3FC","#D946EF","#F59E0B"];
+const D_LIGHT = ["#7C3AED","#8B5CF6","#0E7490","#0891B2","#A21CAF","#B45309"];
+const SVGNS = "http://www.w3.org/2000/svg";
+let aDots = [], aRAF = null, aT = 0;
+const rm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+function buildAmbient(){
+  const svg = $("#ambient"); svg.innerHTML = ""; aDots = [];
+  const W = innerWidth, H = innerHeight;
+  svg.setAttribute("viewBox", "0 0 " + W + " " + H);
+  const pal = document.documentElement.dataset.theme === "light" ? D_LIGHT : D_DARK;
+  for (let k = 0; k < 140; k++){
+    const c = document.createElementNS(SVGNS, "circle");
+    const base = .30 + Math.random() * .35;
+    c.setAttribute("r", (1.4 + Math.random() * 2.2).toFixed(2));
+    c.setAttribute("fill", pal[k % 6]);
+    c.setAttribute("opacity", base.toFixed(2));
+    svg.appendChild(c);
+    aDots.push({ el: c, x: Math.random() * W, y: Math.random() * H,
+      vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3,
+      base, ph: Math.random() * Math.PI * 2, sp: .4 + Math.random() * 1.4 });
+  }
+  if (!rm) startAmbient();
+}
+function recolorAmbient(){
+  const pal = document.documentElement.dataset.theme === "light" ? D_LIGHT : D_DARK;
+  aDots.forEach((d, k) => d.el.setAttribute("fill", pal[k % 6]));
+}
+function tick(){
+  aT += .016;
+  const W = innerWidth, H = innerHeight;
+  for (const d of aDots){
+    d.x = (d.x + d.vx + W) % W; d.y = (d.y + d.vy + H) % H;
+    d.el.setAttribute("transform", "translate(" + d.x.toFixed(1) + " " + d.y.toFixed(1) + ")");
+    d.el.setAttribute("opacity", (d.base * (.7 + .3 * Math.sin(aT * d.sp + d.ph))).toFixed(2));
+  }
+  aRAF = requestAnimationFrame(tick);
+}
+function startAmbient(){ if (!aRAF && !rm) aRAF = requestAnimationFrame(tick); }
+function stopAmbient(){ if (aRAF){ cancelAnimationFrame(aRAF); aRAF = null; } }
+document.addEventListener("visibilitychange", () => document.hidden ? stopAmbient() : startAmbient());
+let rsz; addEventListener("resize", () => { clearTimeout(rsz); rsz = setTimeout(() => { stopAmbient(); buildAmbient(); }, 250); });
+/* theme */
+function setTheme(t){
+  document.documentElement.dataset.theme = t;
+  try { localStorage.setItem("rules-theme", t); } catch(e){}
+  document.querySelectorAll("#themeToggle button").forEach(b =>
+    b.setAttribute("aria-pressed", b.dataset.t === t));
+  recolorAmbient();
+}
+document.querySelectorAll("#themeToggle button").forEach(b =>
+  b.addEventListener("click", () => setTheme(b.dataset.t)));
+/* init */
+document.addEventListener("DOMContentLoaded", () => {
+  let saved = "dark";
+  try { saved = localStorage.getItem("rules-theme") || "dark"; } catch(e){}
+  renderPills(); renderRules(); applyFilter();
+  $("#search").addEventListener("input", e => { query = e.target.value; applyFilter(); });
+  setTheme(saved);
+  buildAmbient();
+});
+</script>
+</body>
+</html>
